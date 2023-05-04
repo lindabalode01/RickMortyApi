@@ -1,0 +1,19 @@
+{
+    "name": "lindabalode/rick-morty-api",
+    "autoload": {
+        "psr-4": {
+            "RickMortyApi\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lindabalode",
+            "email": "balode.lindaa@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.5",
+        "nikic/fast-route": "^1.3",
+        "twig/twig": "^3.0"
+    }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Rick and Morty API</title>
+</head>
+<body>
+<h1>Rick and Morty Characters</h1>
+<ul>
+    {% for character in characters %}
+        <li>
+            <img src="{{ character.getPictureUrl() }}" alt="{{ character.getName() }}">
+            <h2>{{ character.getName() }}</h2>
+            <p>Status: {{ character.getStatus() }}</p>
+            <p>Species: {{ character.getSpecies() }}</p>
+            <p>Location: {{ character.getLocation() }}</p>
+            <p>First seen in: {{ character.getFirstSceen() }}</p>
+            <p>  {{ character.getPictureUrl() }}</p>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
