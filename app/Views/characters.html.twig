@@ -6,7 +6,7 @@
     <style>
         /* Set background color */
         body {
-            background-color: lightblue;
+            background-color: lightseagreen;
         }
 
         /* Center the title */
@@ -22,13 +22,25 @@
             list-style: none;
             padding: 0;
         }
+
         li {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: center;
             flex: 0 0 calc(33.33% - 10px);
             margin-bottom: 20px;
             padding: 20px;
             border: 1px solid #ddd;
             box-sizing: border-box;
         }
+
+        .character-info {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+        }
+
         /* Define the dot styles */
         .status-dot {
             display: inline-block;
@@ -37,12 +49,15 @@
             border-radius: 50%;
             margin-right: 5px;
         }
+
         .status-dot--alive {
             background-color: green;
         }
+
         .status-dot--dead {
             background-color: red;
         }
+
         .status-dot--unknown {
             background-color: grey;
         }
@@ -53,6 +68,7 @@
                 flex: 0 0 calc(50% - 10px);
             }
         }
+
         /* Set the columns layout for extra-small screens */
         @media (max-width: 479px) {
             li {
@@ -69,8 +85,17 @@
             text-decoration: none;
             border-radius: 5px;
         }
+
         .btn:hover {
             background-color: #aaa;
+        }
+
+        /* Style the character images */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -81,24 +106,22 @@
         {% for item in character %}
             <li>
                 <img src="{{ item.getPictureUrl() }}" alt="{{ item.getName() }}">
-                <h2>{{ item.getName() }}</h2>
-                <p>
-                    <span class="status-dot status-dot--{{ item.getStatus()|lower }}"></span>
-                    {{ item.getStatus() }}
-                </p>
-                <p>Species: {{ item.getSpecies() }}</p>
-                <p>Location: {{ item.getLocation() }}</p>
-                <p>First seen in: {{ item.getFirstSceen() }}</p>
-                <p>  {{ item.getPictureUrl() }}</p>
+                <div class="character-info">
+                    <h2>{{ item.getName() }}</h2>
+                    <p>
+                        <span class="status-dot status-dot--{{ item.getStatus()|lower }}"></span>
+                        {{ item.getStatus() }}
+                    </p>
+                    <p>Species: {{ item.getSpecies() }}</p>
+                    <p>Location: {{ item.getLocation() }}</p>
+                    <p>First seen in: {{ item.getFirstSceen().getName() }}</p>
+                </div>
             </li>
         {% endfor %}
     {% endfor %}
 </ul>
 <!-- Add the next and back buttons -->
 {% if characters.has_previous %}
-    <a href="?page={{ characters.previous_page_number }}" class="btn">Back</a>
-{% endif %}
-{% if characters.has_next %}
     <a href="?page={{ characters.next_page_number }}" class="btn">Next</a>
 {% endif %}
 </body>

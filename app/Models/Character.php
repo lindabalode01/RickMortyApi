@@ -8,17 +8,17 @@ class Character
     private string $status;
     private string $species;
     private string $location;
-    private string $firstSceen;
+    private Episode $firstSceen;
     private string $pictureUrl;
 
     public function __construct
     (
-        string $name,
-        string $status,
-        string $species,
-        string $location,
-        string $firstSceen,
-        string $pictureUrl
+        string  $name,
+        string  $status,
+        string  $species,
+        string  $location,
+        Episode $firstSceen,
+        string  $pictureUrl
     )
     {
         $this->name = $name;
@@ -49,7 +49,7 @@ class Character
         return $this->location;
     }
 
-    public function getFirstSceen(): string
+    public function getFirstSceen(): Episode
     {
         return $this->firstSceen;
     }
