@@ -17,22 +17,21 @@ class Cache
 
     public static function delete(string $key): void
     {
-        unlink('cache/' . $key);
+        unlink('../cache/' . $key);
     }
 
     public static function ifHas(string $key): bool
     {
-        if (!file_exists('cache/' . $key))
-        {
+        if (!file_exists('../cache/' . $key)) {
             return false;
         }
-        $content = json_decode(file_get_contents('cache/' . $key));
+        $content = json_decode(file_get_contents('../cache/' . $key));
         return Carbon::now() < $content->expires_at;
     }
 
     public static function get(string $key): string
     {
-        $content = json_decode(file_get_contents('cache/' . $key));
+        $content = json_decode(file_get_contents('../cache/' . $key));
         return $content->content;
     }
 }

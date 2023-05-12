@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <title>Search Characters</title>
+</head>
+<body>
+<h1>Search Characters</h1>
+<form action="{{ path('searchCharacters') }}" method="get">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name"><br>
+    <label for="status">Status:</label>
+    <input type="text" name="status" id="status"><br>
+    <input type="submit" value="Search">
+</form>
+<h1>Search Results</h1>
+{% if characters is not empty %}
+<ul>
+    {% for character in characters %}
+            <li>
+                <img src="{{ item.getPictureUrl() }}" alt="{{ item.getName() }}">
+                <div class="character-info">
+                    <h2>{{ item.getName() }}</h2>
+                    <p>
+                        <span class="status-dot status-dot--{{ item.getStatus()|lower }}"></span>
+                        {{ item.getStatus() }}
+                    </p>
+                    <p>Species: {{ item.getSpecies() }}</p>
+                    <p>Location: {{ item.getLocation() }}</p>
+                    <p>First seen in: {{ item.getFirstSceen().getName() }}</p>
+                </div>
+            </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>No characters found.</p>
+{% endif %}
+</body>
+</html>
